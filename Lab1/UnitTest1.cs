@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Lab1
 {
-    [TestClass]
+    [TestClass] 
     public class UnitTest1
     {
         const int rowsCount = 16;
@@ -36,7 +36,7 @@ namespace Lab1
             return rowBit;
         }
 
-        class PerfectDisjunctionNormalForm
+        public class PerfectDisjunctionNormalForm
         {
             private readonly List<uint> trueNumbers;
             public PerfectDisjunctionNormalForm(bool[] outputs)
@@ -79,7 +79,7 @@ namespace Lab1
             }
         }
 
-        class PerfectConjunctionNormalForm
+        public class PerfectConjunctionNormalForm
         {
             private readonly List<uint> falseNumbers;
             public PerfectConjunctionNormalForm(bool[] outputs)
@@ -122,7 +122,7 @@ namespace Lab1
             }
         }
 
-        static bool[] GetOutputBool()
+        public static bool[] GetOutputBool()
         {
             uint[] outputsInt = new uint[] { 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0 };
 
@@ -138,7 +138,7 @@ namespace Lab1
         public void TestTable()
         {
             bool[] outputsBool = GetOutputBool();
-            bool[,] table = GetTrueTable(outputsBool);
+            bool[,] tfable = GetTrueTable(outputsBool);
         }
 
         [TestMethod]

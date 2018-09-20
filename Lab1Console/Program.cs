@@ -1,7 +1,7 @@
 ﻿using Lab1;
 using System;
 
-namespace ConsoleApp2
+namespace Lab1Console
 {
     class Program
     {

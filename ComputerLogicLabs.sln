@@ -5,11 +5,13 @@ VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab1", "Lab1\Lab1.csproj", "{565F5B38-2966-453B-89B8-6D00C1D3D694}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab1Console", "Lab1Console\Lab1Console.csproj", "{6EF99C0A-DBF9-4F76-A8D3-145B4EF5920A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab1Console", "Lab1Console\Lab1Console.csproj", "{6EF99C0A-DBF9-4F76-A8D3-145B4EF5920A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2", "Lab2\Lab2.csproj", "{C9E6D46C-1A5B-4AB7-A660-37BE2B53D2B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab2", "Lab2\Lab2.csproj", "{C9E6D46C-1A5B-4AB7-A660-37BE2B53D2B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2Console", "Lab2Console\Lab2Console.csproj", "{83643620-6A7C-4E63-9858-0DBC5D0BB663}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab2Console", "Lab2Console\Lab2Console.csproj", "{83643620-6A7C-4E63-9858-0DBC5D0BB663}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionOptimization", "FunctionOptimization\FunctionOptimization.csproj", "{9E833BA3-2344-435F-895F-A6875DE23D2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{83643620-6A7C-4E63-9858-0DBC5D0BB663}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83643620-6A7C-4E63-9858-0DBC5D0BB663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83643620-6A7C-4E63-9858-0DBC5D0BB663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E833BA3-2344-435F-895F-A6875DE23D2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E833BA3-2344-435F-895F-A6875DE23D2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E833BA3-2344-435F-895F-A6875DE23D2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E833BA3-2344-435F-895F-A6875DE23D2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

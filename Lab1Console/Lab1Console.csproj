@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FunctionOptimization\FunctionOptimization.csproj" />
     <ProjectReference Include="..\Lab1\Lab1.csproj" />
   </ItemGroup>
 

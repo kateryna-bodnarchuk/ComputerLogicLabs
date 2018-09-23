@@ -1,4 +1,5 @@
-﻿using Lab1;
+﻿using FunctionOptimization;
+using Lab1;
 using System;
 
 namespace Lab1Console
@@ -7,10 +8,10 @@ namespace Lab1Console
     {
         static void Main(string[] args)
         {
-            var perfectDisjunctionNormalForm = new UnitTest1.PerfectDisjunctionNormalForm(UnitTest1.GetOutputBool());
+            var perfectDisjunctionNormalForm = new PerfectDisjunctionNormalFormBinary(BitTools.GetOutputBool(BitTools.KateBodnarchukCase));
 
             uint input = uint.Parse(Console.ReadLine());
-            bool result = perfectDisjunctionNormalForm.Execute(input);
+            bool result = perfectDisjunctionNormalForm.Evaluate(input);
             Console.WriteLine(result ? 1 : 0);
             Console.ReadKey();
         }

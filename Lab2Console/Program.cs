@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FunctionOptimization;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
 
 namespace Lab2Console
 {
@@ -6,7 +9,21 @@ namespace Lab2Console
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            uint[] outputIntegers = BitTools.KateBodnarchukCase;
+            bool[] output = BitTools.GetOutputBool(outputIntegers);
+            List<Implicant> constituents = PositiveMcCluskeyMethod.GetConstituents(output);
+            string constituentsDisjunctionFormString = 
+                Implicant.GetDisjunctionFormString(constituents);
+            Console.WriteLine("Kate's Bodnarchuk Original Function: " + constituentsDisjunctionFormString);
+
+            var minimalDisjunctionalNormalFunction = 
+                PositiveMcCluskeyMethod.GetImplicantDisjunctionNormalForm(output);
+
+            Console.WriteLine("Kate's Bodnarchuk Optimized Function: " + minimalDisjunctionalNormalFunction.ToString());
+
+            uint input = uint.Parse(Console.ReadLine());
+            Console.WriteLine("Output: " + minimalDisjunctionalNormalFunction.Evaluate(input));
+            Console.ReadKey();
         }
     }
 }

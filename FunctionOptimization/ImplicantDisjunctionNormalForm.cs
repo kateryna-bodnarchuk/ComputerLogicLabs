@@ -47,5 +47,10 @@ namespace FunctionOptimization
 
             return true;
         }
+
+        public override string ToString()
+        {
+            return Implicant.GetDisjunctionFormString(implicants);
+        }
     }
 }

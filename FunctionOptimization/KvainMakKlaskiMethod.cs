@@ -15,7 +15,6 @@ namespace FunctionOptimization
             TreeNode<IReadOnlyList<Implicant>> implicantTree = GetImplicantsTreeNode(constituents);
             List<Implicant> implicantTreeInlined = InlineTreeFromLeavesToRoot(implicantTree);
             List<Implicant> shortDisjunctionNormalFormImplicants = AbsorpImplicantsToShortDisjunctionNormalForm(implicantTreeInlined);
-            //return new ImplicantDisjunctionNormalForm(shortDisjunctionNormalFormImplicants);
             List<Implicant> minimalDisjuncionNormalForm = GetMinimalDisjunctionNormalForm(
                 constituents, shortDisjunctionNormalFormImplicants);
             return new ImplicantDisjunctionNormalForm(minimalDisjuncionNormalForm);
@@ -23,28 +22,24 @@ namespace FunctionOptimization
 
         /// <summary>
         /// Petrick's method (https://en.wikipedia.org/wiki/Petrick%27s_method) is too complicated for lab work programming.
-        /// Thats why lets implement primitive method based on 
+        /// Thats why lets implement primitive method based on teacher's explanation.
         /// </summary>
         private static List<Implicant> GetMinimalDisjunctionNormalForm(List<Implicant> constituents, List<Implicant> implicants)
         {
-            ImplicantMetrics GetImplicantMetrics(Implicant implicant)
+            var coreImplicants = new HashSet<Implicant>();
+            foreach (Implicant implicant in implicants)
             {
-                bool isCore = false;
                 foreach (Implicant constituent in constituents)
                 {
-                    if (implicant.IsSubsetOf(constituent))
+                    List<Implicant> implicantsInConstituent = implicants.Where(i => i.IsSubsetOf(constituent)).ToList();
+
+                    if (implicantsInConstituent.Count == 1 && implicantsInConstituent.Contains(implicant))
                     {
-                        bool isCoreForConstituent = implicants.Where(i => i.IsSubsetOf(constituent)).Count() == 1;
-                        if (isCoreForConstituent)
-                        {
-                            isCore = true;
-                        }
+                        coreImplicants.Add(implicant);
+                        continue;
                     }
                 }
-                return new ImplicantMetrics(implicant, isCore);
             }
-            List<ImplicantMetrics> implicantMetrics = implicants.Select(GetImplicantMetrics).ToList();
-            List<Implicant> coreImplicants = implicantMetrics.Where(i => i.IsCore).Select(i => i.Implicant).ToList();
             List<Implicant> noncoreImplicants = implicants.Except(coreImplicants).ToList();
 
             List<Implicant> notCoveredConstituents = constituents
@@ -75,17 +70,6 @@ namespace FunctionOptimization
             }
 
             return resultImplicants;
-        }
-
-        private sealed class ImplicantMetrics
-        {
-            public ImplicantMetrics(Implicant implicant, bool isCore)
-            {
-                this.Implicant = implicant;
-                this.IsCore = isCore;
-            }
-            public Implicant Implicant { get; }
-            public bool IsCore { get; }
         }
 
         /// <param name="implicants">Implicants ordered from short to long.</param>

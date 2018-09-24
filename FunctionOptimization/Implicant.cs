@@ -16,7 +16,7 @@ namespace FunctionOptimization
     /// Items are sorded by index.
     /// </remarks>
     [DebuggerDisplay("{DebuggerDisplay}")]
-    public class Implicant : IReadOnlyCollection<InputSign>
+    public class Implicant : IReadOnlyCollection<InputSign>, IEquatable<Implicant>
     {
         private readonly InputSign[] list;
         private readonly HashSet<InputSign> indexSet;
@@ -115,5 +115,18 @@ namespace FunctionOptimization
         public override string ToString() => DebuggerDisplay;
 
         public int Count => list.Length;
+
+        public static string GetDisjunctionFormString(IEnumerable<Implicant> implicants)
+        {
+            return string.Join("v", implicants.Select(i => "(" + i.ToString() + ")"));
+        }
+
+        public bool Equals(Implicant other) => this.indexSet.SetEquals(other.indexSet);
+
+        public override bool Equals(object obj) => Equals(obj as Implicant);
+
+        public static bool operator ==(Implicant a, Implicant b) => a.Equals(b);
+
+        public static bool operator !=(Implicant a, Implicant b) => !a.Equals(b);
     }
 }

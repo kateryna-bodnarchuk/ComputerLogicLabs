@@ -1,4 +1,6 @@
+using LogicAlgebra;
 using LogicAlgebra.FunctionOptimization;
+using LogicAlgebra.IntLogic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -10,7 +12,7 @@ namespace Lab2
         [TestMethod]
         public void TestMethod1()
         {
-            uint[] outputIntegers = BitTools.YouTubeCase;
+            uint[] outputIntegers = KaterynaBodnarchukTask.YouTubeCase;
             bool[] output = BitTools.GetOutputBool(outputIntegers);
             Func<uint, bool> perfectDisjunctionNormalFunction =
                 new PerfectDisjunctionNormalFormBinary(output).Evaluate;

@@ -1,6 +1,8 @@
 ﻿using LogicAlgebra.FunctionOptimization;
 using Lab1;
 using System;
+using LogicAlgebra;
+using LogicAlgebra.IntLogic;
 
 namespace Lab1Console
 {
@@ -8,7 +10,8 @@ namespace Lab1Console
     {
         static void Main(string[] args)
         {
-            var perfectDisjunctionNormalForm = new PerfectDisjunctionNormalFormBinary(BitTools.GetOutputBool(BitTools.KateBodnarchukCase));
+            var perfectDisjunctionNormalForm = new PerfectDisjunctionNormalFormBinary(
+                BitTools.GetOutputBool(KaterynaBodnarchukTask.KateBodnarchukCase));
 
             uint input = uint.Parse(Console.ReadLine());
             bool result = perfectDisjunctionNormalForm.Evaluate(input);

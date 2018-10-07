@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using LogicAlgebra.IntLogic;
 
 namespace LogicAlgebra.FunctionOptimization
 {
@@ -10,16 +11,16 @@ namespace LogicAlgebra.FunctionOptimization
     /// </summary>
     public class ImplicantDisjunctionNormalForm
     {
-        private readonly Implicant[] implicants;
-
         public ImplicantDisjunctionNormalForm(IEnumerable<Implicant> implicants)
         {
-            this.implicants = implicants.ToArray();
+            this.Implicants = implicants.ToArray();
         }
+
+        public IReadOnlyList<Implicant> Implicants { get; }
 
         public bool Evaluate(uint input)
         {
-            foreach (Implicant implicant in implicants)
+            foreach (Implicant implicant in Implicants)
             {
                 if (EvaluateImplicant(input, implicant))
                 {
@@ -50,7 +51,7 @@ namespace LogicAlgebra.FunctionOptimization
 
         public override string ToString()
         {
-            return Implicant.GetDisjunctionFormString(implicants);
+            return Implicant.GetDisjunctionFormString(Implicants);
         }
     }
 }

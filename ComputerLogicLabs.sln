@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab2Console", "Lab2Console\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicAlgebra", "LogicAlgebra\LogicAlgebra.csproj", "{51311650-339C-46CC-BED8-BCCADDAAFC92}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3Console", "Lab3Console\Lab3Console.csproj", "{58691694-C765-417F-A648-FC2660636C85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{51311650-339C-46CC-BED8-BCCADDAAFC92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51311650-339C-46CC-BED8-BCCADDAAFC92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51311650-339C-46CC-BED8-BCCADDAAFC92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58691694-C765-417F-A648-FC2660636C85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58691694-C765-417F-A648-FC2660636C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58691694-C765-417F-A648-FC2660636C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58691694-C765-417F-A648-FC2660636C85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

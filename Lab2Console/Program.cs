@@ -1,4 +1,6 @@
-﻿using LogicAlgebra.FunctionOptimization;
+﻿using LogicAlgebra;
+using LogicAlgebra.FunctionOptimization;
+using LogicAlgebra.IntLogic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ namespace Lab2Console
     {
         static void Main(string[] args)
         {
-            uint[] outputIntegers = BitTools.KateBodnarchukCase;
+            uint[] outputIntegers = KaterynaBodnarchukTask.KateBodnarchukCase;
             bool[] output = BitTools.GetOutputBool(outputIntegers);
             List<Implicant> constituents = PositiveMcCluskeyMethod.GetConstituents(output);
             string constituentsDisjunctionFormString = 

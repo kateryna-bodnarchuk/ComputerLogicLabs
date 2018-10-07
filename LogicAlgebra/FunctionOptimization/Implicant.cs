@@ -18,14 +18,15 @@ namespace LogicAlgebra.FunctionOptimization
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class Implicant : IReadOnlyCollection<InputSign>, IEquatable<Implicant>
     {
-        private readonly InputSign[] list;
         private readonly HashSet<InputSign> indexSet;
 
         public Implicant(IEnumerable<InputSign> items)
         {
-            this.list = items.OrderBy(i => i.Index).ToArray();
+            this.Items = items.OrderBy(i => i.Index).ToArray();
             this.indexSet = new HashSet<InputSign>(items, new InputSignEqualityComparer());
         }
+
+        public IReadOnlyList<InputSign> Items { get; }
 
         internal int GetPositiveBitsCount()
         {
@@ -59,8 +60,8 @@ namespace LogicAlgebra.FunctionOptimization
             List<int> signDifferenceIndexes = new List<int>();
             for (int i = 0; i < a.Count; i++)
             {
-                InputSign aItem = a.list[i];
-                InputSign bItem = b.list[i];
+                InputSign aItem = a.Items[i];
+                InputSign bItem = b.Items[i];
                 if (aItem.Index != bItem.Index)
                 {
                     return false;
@@ -97,7 +98,7 @@ namespace LogicAlgebra.FunctionOptimization
             return this.indexSet.IsSubsetOf(other.indexSet);
         }
 
-        public IEnumerator<InputSign> GetEnumerator() => list.AsEnumerable().GetEnumerator();
+        public IEnumerator<InputSign> GetEnumerator() => Items.AsEnumerable().GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
@@ -114,7 +115,7 @@ namespace LogicAlgebra.FunctionOptimization
 
         public override string ToString() => DebuggerDisplay;
 
-        public int Count => list.Length;
+        public int Count => Items.Count;
 
         public static string GetDisjunctionFormString(IEnumerable<Implicant> implicants)
         {

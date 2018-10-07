@@ -1,4 +1,6 @@
+using LogicAlgebra;
 using LogicAlgebra.FunctionOptimization;
+using LogicAlgebra.IntLogic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -37,14 +39,14 @@ namespace Lab1
         [TestMethod]
         public void TestTable()
         {
-            bool[] outputsBool = BitTools.GetOutputBool(BitTools.KateBodnarchukCase);
+            bool[] outputsBool = BitTools.GetOutputBool(KaterynaBodnarchukTask.KateBodnarchukCase);
             bool[,] tfable = GetTrueTable(outputsBool);
         }
 
         [TestMethod]
         public void TestPerfectDisjunctionNormalForm()
         {
-            bool[] outputsBool = BitTools.GetOutputBool(BitTools.KateBodnarchukCase);
+            bool[] outputsBool = BitTools.GetOutputBool(KaterynaBodnarchukTask.KateBodnarchukCase);
             var perfectDisjunctionNormalForm = new PerfectDisjunctionNormalFormBinary(outputsBool);
             var perfectConjunctionNormalForm = new PerfectConjunctionNormalFormBinary(outputsBool);
             for (uint input = 0; input < BitTools.rowsCount; input++)

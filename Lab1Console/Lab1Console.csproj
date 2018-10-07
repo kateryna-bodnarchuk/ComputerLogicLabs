@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FunctionOptimization\FunctionOptimization.csproj" />
     <ProjectReference Include="..\Lab1\Lab1.csproj" />
+    <ProjectReference Include="..\LogicAlgebra\LogicAlgebra.csproj" />
   </ItemGroup>
 
 </Project>

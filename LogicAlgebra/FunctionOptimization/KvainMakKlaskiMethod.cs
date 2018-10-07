@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FunctionOptimization
+namespace LogicAlgebra.FunctionOptimization
 {
     /// <summary>
     /// https://en.wikipedia.org/wiki/Quine–McCluskey_algorithm

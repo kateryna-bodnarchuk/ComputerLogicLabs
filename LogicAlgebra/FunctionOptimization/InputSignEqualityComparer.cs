@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FunctionOptimization
+namespace LogicAlgebra.FunctionOptimization
 {
     public sealed class InputSignEqualityComparer : IEqualityComparer<InputSign>
     {

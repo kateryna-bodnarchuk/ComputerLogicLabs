@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Collections;
 
-namespace FunctionOptimization
+namespace LogicAlgebra.FunctionOptimization
 {
     /// <summary>
     /// Universal aggrigate to use for constinuents and implicants 
@@ -108,7 +108,7 @@ namespace FunctionOptimization
                 var itemsForConjunction = this
                 .OrderBy(i => i.Index)
                 .Select(i => (i.IsInversed ? "!" : "") + i.Index.ToString()).ToArray();
-                return string.Join('^', itemsForConjunction);
+                return string.Join("^", itemsForConjunction);
             }
         }
 

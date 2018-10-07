@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace FunctionOptimization
+namespace LogicAlgebra.FunctionOptimization
 {
     /// <summary>
     /// Imutable tree node.

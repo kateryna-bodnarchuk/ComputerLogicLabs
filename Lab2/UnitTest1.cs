@@ -1,4 +1,4 @@
-using FunctionOptimization;
+using LogicAlgebra.FunctionOptimization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

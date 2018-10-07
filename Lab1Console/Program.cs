@@ -1,4 +1,4 @@
-﻿using FunctionOptimization;
+﻿using LogicAlgebra.FunctionOptimization;
 using Lab1;
 using System;
 

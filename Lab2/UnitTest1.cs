@@ -17,7 +17,11 @@ namespace Lab2
             Func<uint, bool> perfectDisjunctionNormalFunction =
                 new PerfectDisjunctionNormalFormBinary(output).Evaluate;
             Func<uint, bool> minimalDisjunctionalNormalFunction =
-                PositiveMcCluskeyMethod.GetImplicantDisjunctionNormalForm(output).Evaluate;
+                value => ImplicantDisjunctionNormalForm.Evaluate(
+                    PositiveMcCluskeyMethod.GetImplicantDisjunctionNormalForm(output),
+                    value
+                );
+
             for (uint i = 0; i < BitTools.rowsCount; i++)
             {
                 bool actual = output[i];

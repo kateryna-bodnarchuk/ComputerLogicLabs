@@ -21,6 +21,7 @@ namespace LogicAlgebra.Core
             return !argumentValue;
         }
 
-        public string GetFormulaString() => "!(" + Argument.GetFormulaString() + ")";
+        public string GetFormulaString(IFunctionFormatting formatting) => 
+            "!(" + Argument.GetFormulaString(formatting) + ")";
     }
 }

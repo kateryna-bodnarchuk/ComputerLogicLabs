@@ -9,18 +9,11 @@ namespace LogicAlgebra.FunctionOptimization
     /// <summary>
     /// Implements discunction between function implicants.
     /// </summary>
-    public class ImplicantDisjunctionNormalForm
+    public static class ImplicantDisjunctionNormalForm
     {
-        public ImplicantDisjunctionNormalForm(IEnumerable<Implicant> implicants)
+        public static bool Evaluate(IEnumerable<Implicant> implicants, uint input)
         {
-            this.Implicants = implicants.ToArray();
-        }
-
-        public IReadOnlyList<Implicant> Implicants { get; }
-
-        public bool Evaluate(uint input)
-        {
-            foreach (Implicant implicant in Implicants)
+            foreach (Implicant implicant in implicants)
             {
                 if (EvaluateImplicant(input, implicant))
                 {
@@ -47,11 +40,6 @@ namespace LogicAlgebra.FunctionOptimization
             }
 
             return true;
-        }
-
-        public override string ToString()
-        {
-            return Implicant.GetDisjunctionFormString(Implicants);
         }
     }
 }

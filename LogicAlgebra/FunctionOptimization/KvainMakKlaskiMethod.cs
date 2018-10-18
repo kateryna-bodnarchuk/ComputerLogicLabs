@@ -10,7 +10,7 @@ namespace LogicAlgebra.FunctionOptimization
     /// </summary>
     public static class PositiveMcCluskeyMethod
     {
-        public static ImplicantDisjunctionNormalForm GetImplicantDisjunctionNormalForm(bool[] outputs)
+        public static List<Implicant> GetImplicantDisjunctionNormalForm(bool[] outputs)
         {
             List<Implicant> constituents = GetConstituents(outputs);
             TreeNode<IReadOnlyList<Implicant>> implicantTree = GetImplicantsTreeNode(constituents);
@@ -18,7 +18,7 @@ namespace LogicAlgebra.FunctionOptimization
             List<Implicant> shortDisjunctionNormalFormImplicants = AbsorpImplicantsToShortDisjunctionNormalForm(implicantTreeInlined);
             List<Implicant> minimalDisjuncionNormalForm = GetMinimalDisjunctionNormalForm(
                 constituents, shortDisjunctionNormalFormImplicants);
-            return new ImplicantDisjunctionNormalForm(minimalDisjuncionNormalForm);
+            return minimalDisjuncionNormalForm;
         }
 
         /// <summary>

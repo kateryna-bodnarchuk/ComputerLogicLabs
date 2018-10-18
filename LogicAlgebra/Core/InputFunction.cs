@@ -13,6 +13,7 @@ namespace LogicAlgebra.Core
 
         public bool Evaluate(IEvaluationContext context) => context.GetInput(Index);
 
-        public string GetFormulaString() => "x" + Index.ToString();
+        public string GetFormulaString(IFunctionFormatting formatting) 
+            => formatting == null ? Index.ToString() : formatting.InputToString(Index);
     }
 }

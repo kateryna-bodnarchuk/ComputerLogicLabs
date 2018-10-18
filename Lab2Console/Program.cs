@@ -21,10 +21,21 @@ namespace Lab2Console
             var minimalDisjunctionalNormalFunction = 
                 PositiveMcCluskeyMethod.GetImplicantDisjunctionNormalForm(output);
 
-            Console.WriteLine("Optimized Function: " + minimalDisjunctionalNormalFunction.ToString());
+            Console.WriteLine(
+                "Optimized Function: " 
+                + 
+                Implicant.GetDisjunctionFormString(minimalDisjunctionalNormalFunction)
+            );
 
             uint input = uint.Parse(Console.ReadLine());
-            Console.WriteLine("Output: " + minimalDisjunctionalNormalFunction.Evaluate(input));
+            Console.WriteLine(
+                "Output: " 
+                + 
+                ImplicantDisjunctionNormalForm.Evaluate(
+                    minimalDisjunctionalNormalFunction,
+                    input
+                )
+            );
             Console.ReadKey();
 
         }

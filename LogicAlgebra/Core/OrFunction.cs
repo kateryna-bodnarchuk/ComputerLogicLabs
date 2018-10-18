@@ -19,7 +19,7 @@ namespace LogicAlgebra.Core
 
         public bool Evaluate(IEvaluationContext context)
         {
-            foreach (IBooleanFunction item in Arguments)
+            foreach (IBooleanFunction item in Arguments.Reverse())
             {
                 bool itemValue = item.Evaluate(context);
                 if (itemValue == true)
@@ -31,12 +31,16 @@ namespace LogicAlgebra.Core
             return false;
         }
 
-        public string GetFormulaString()
+        public string GetFormulaString(IFunctionFormatting formatting = null)
         {
             List<string> itemsInBrases = new List<string>();
+
+            var argumentsToIterate = (formatting == null || !formatting.InverseBlockOrder) ?
+                Arguments : Arguments.Reverse();
+
             foreach (IBooleanFunction item in Arguments)
             {
-                itemsInBrases.Add("(" + item.GetFormulaString() + ")");
+                itemsInBrases.Add("(" + item.GetFormulaString(formatting) + ")");
             }
 
             return string.Join("v", itemsInBrases);

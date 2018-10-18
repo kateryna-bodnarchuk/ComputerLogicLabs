@@ -31,12 +31,16 @@ namespace LogicAlgebra.Core
             return true;
         }
 
-        public string GetFormulaString()
+        public string GetFormulaString(IFunctionFormatting formatting)
         {
             List<string> itemsInBrases = new List<string>();
-            foreach (IBooleanFunction item in Arguments)
+
+            var argumentsToIterate = (formatting == null || !formatting.InverseBlockOrder) ?
+                Arguments : Arguments.Reverse();
+            
+            foreach (IBooleanFunction item in argumentsToIterate)
             {
-                itemsInBrases.Add(item.GetFormulaString());
+                itemsInBrases.Add(item.GetFormulaString(formatting));
             }
 
             return string.Join("^", itemsInBrases);

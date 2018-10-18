@@ -3,6 +3,6 @@
     public interface IBooleanFunction
     {
         bool Evaluate(IEvaluationContext context);
-        string GetFormulaString();
+        string GetFormulaString(IFunctionFormatting formatting = null);
     }
 }

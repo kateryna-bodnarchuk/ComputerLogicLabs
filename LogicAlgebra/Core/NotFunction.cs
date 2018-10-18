@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LogicAlgebra.Core
 {
-    [DebuggerDisplay("{GetFormulaString()}")]
+    [DebuggerDisplay("{GetFormulaString(null)}")]
     public sealed class NotFunction : IBooleanFunction
     {
         public NotFunction(IBooleanFunction argument)
@@ -14,6 +14,12 @@ namespace LogicAlgebra.Core
         }
 
         public IBooleanFunction Argument { get; }
+
+        public static IBooleanFunction NotOptimized(IBooleanFunction function)
+        {
+            if (function is NotFunction) return ((NotFunction)function).Argument;
+            else return new NotFunction(function);
+        }
 
         public bool Evaluate(IEvaluationContext context)
         {

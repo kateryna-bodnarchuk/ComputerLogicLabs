@@ -39,6 +39,12 @@ namespace Lab3Console
                 "Optimized optimized Inversed Function Inversed",
                 minimalDisjunctionalNormalFormDobleInversed);
 
+            IBooleanFunction andOfNotAndForm = RecursiveTransform.ExecuteRecursive(
+                minimalDisjunctionalNormalFormDobleInversed, DeMorgansLaw.TryConvertNotOfOrToAndOfNot);
+            PrintWithTitle(
+                "Not of not and",
+                andOfNotAndForm);
+
             uint input = uint.Parse(Console.ReadLine());
             Console.WriteLine("Output: " + ImplicantDisjunctionNormalForm.Evaluate(minimalDisjunctionalNormalForm, input));
             Console.ReadKey();

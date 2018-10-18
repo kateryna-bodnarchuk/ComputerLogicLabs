@@ -12,7 +12,7 @@ namespace LogicAlgebra
         public static OrFunction ToOrFunction(IEnumerable<Implicant> implicants)
         {
             return new OrFunction(
-                arguments: implicants.Select(ToAndFunciton));
+                items: implicants.Select(ToAndFunciton));
         }
 
         private static AndFunction ToAndFunciton(Implicant implicant)

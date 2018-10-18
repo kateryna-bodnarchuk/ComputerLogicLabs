@@ -24,8 +24,8 @@ namespace LogicAlgebra.Core
                 }
                 else
                 {
-                    return x.Arguments.SequenceEqual(
-                        y.Arguments, BooleanFunctionEqualityComparer.Instance);
+                    return x.Items.SequenceEqual(
+                        y.Items, BooleanFunctionEqualityComparer.Instance);
                 }
             }
         }

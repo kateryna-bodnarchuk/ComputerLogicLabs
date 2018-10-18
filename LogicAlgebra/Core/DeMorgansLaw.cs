@@ -11,6 +11,40 @@ namespace LogicAlgebra.Core
     /// </summary>
     public static class DeMorgansLaw
     {
+        public static bool TryConvertNotOfOrToAndOfNot(
+            IBooleanFunction boolFunction, out IBooleanFunction result)
+        {
+            result = null;
+
+            if (!(boolFunction is NotFunction)) return false;
+
+            NotFunction root = (NotFunction)boolFunction;
+            if (!(root.Argument is OrFunction)) return false;
+
+            OrFunction orFunction = (OrFunction)root.Argument;
+            result = new AndFunction(
+                orFunction.Items.Select(NotFunction.NotOptimized)
+            );
+            return true;
+        }
+
+        public static bool TryConvertNotOfAndToOrOfNot(
+            IBooleanFunction boolFunction, out IBooleanFunction result)
+        {
+            result = null;
+
+            if (!(boolFunction is NotFunction)) return false;
+
+            NotFunction root = (NotFunction)boolFunction;
+            if (!(root.Argument is AndFunction)) return false;
+
+            AndFunction andFunction = (AndFunction)root.Argument;
+            result = new OrFunction(
+                andFunction.Items.Select(NotFunction.NotOptimized)
+            );
+            return true;
+        }
+
         public static bool TryConvertOrToAnd(IBooleanFunction boolFunction, out IBooleanFunction result)
         {
             result = default(IBooleanFunction);
@@ -26,7 +60,7 @@ namespace LogicAlgebra.Core
             {
                 var orFunction = (OrFunction)boolFunction;
                 var conjunctionOfInversions = new AndFunction(
-                    orFunction.Arguments.Select(i => new NotFunction(i)));
+                    orFunction.Items.Select(i => new NotFunction(i)));
                 result = isNotRoot ? conjunctionOfInversions : (IBooleanFunction)new NotFunction(conjunctionOfInversions);
                 return true;
             }
@@ -51,7 +85,7 @@ namespace LogicAlgebra.Core
             {
                 var orFunction = (OrFunction)boolFunction;
                 var conjunctionOfInversions = new AndFunction(
-                    orFunction.Arguments.Select(i => new NotFunction(i)));
+                    orFunction.Items.Select(i => new NotFunction(i)));
                 result = isNotRoot ? orFunction : (IBooleanFunction)new NotFunction(orFunction);
                 return false;
             }

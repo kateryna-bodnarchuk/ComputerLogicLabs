@@ -7,19 +7,21 @@ using System.Linq;
 
 namespace LogicAlgebra.Core
 {
-    [DebuggerDisplay("{GetFormulaString()}")]
+    [DebuggerDisplay("{GetFormulaString(null)}")]
     public sealed class OrFunction : IBooleanFunction
     {
-        public OrFunction(IEnumerable<IBooleanFunction> arguments)
+        public OrFunction(IEnumerable<IBooleanFunction> items)
         {
-            this.Arguments = new ReadOnlyCollection<IBooleanFunction>(arguments.ToArray());
+            this.Items = new ReadOnlyCollection<IBooleanFunction>(items.ToArray());
         }
 
-        public IReadOnlyCollection<IBooleanFunction> Arguments { get; }
+        public OrFunction(params IBooleanFunction[] items) : this(items.AsEnumerable()) { }
+
+        public IReadOnlyCollection<IBooleanFunction> Items { get; }
 
         public bool Evaluate(IEvaluationContext context)
         {
-            foreach (IBooleanFunction item in Arguments.Reverse())
+            foreach (IBooleanFunction item in Items.Reverse())
             {
                 bool itemValue = item.Evaluate(context);
                 if (itemValue == true)
@@ -36,9 +38,9 @@ namespace LogicAlgebra.Core
             List<string> itemsInBrases = new List<string>();
 
             var argumentsToIterate = (formatting == null || !formatting.InverseBlockOrder) ?
-                Arguments : Arguments.Reverse();
+                Items : Items.Reverse();
 
-            foreach (IBooleanFunction item in Arguments)
+            foreach (IBooleanFunction item in Items)
             {
                 itemsInBrases.Add("(" + item.GetFormulaString(formatting) + ")");
             }

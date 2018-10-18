@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LogicAlgebra.Core
 {
-    [DebuggerDisplay("{GetFormulaString()}")]
+    [DebuggerDisplay("{GetFormulaString(null)}")]
     public sealed class InputFunction : IBooleanFunction
     {
         public InputFunction(int index) { Index = index; }

@@ -7,19 +7,25 @@ using System.Linq;
 
 namespace LogicAlgebra.Core
 {
-    [DebuggerDisplay("{GetFormulaString()}")]
+    [DebuggerDisplay("{GetFormulaString(null)}")]
     public sealed class AndFunction : IBooleanFunction
     {
-        public AndFunction(IEnumerable<IBooleanFunction> arguments)
+        public AndFunction(IEnumerable<IBooleanFunction> items)
         {
-            this.Arguments = new ReadOnlyCollection<IBooleanFunction>(arguments.ToArray());
+            foreach (var item in items)
+            {
+                if (item == null) throw new ArgumentException();
+            }
+            this.Items = new ReadOnlyCollection<IBooleanFunction>(items.ToArray());
         }
 
-        public IReadOnlyCollection<IBooleanFunction> Arguments { get; }
+        public AndFunction(params IBooleanFunction[] items) : this(items.AsEnumerable()) { }
+
+        public IReadOnlyCollection<IBooleanFunction> Items { get; }
 
         public bool Evaluate(IEvaluationContext context)
         {
-            foreach (IBooleanFunction item in Arguments)
+            foreach (IBooleanFunction item in Items)
             {
                 bool itemValue = item.Evaluate(context);
                 if (itemValue == false)
@@ -36,7 +42,7 @@ namespace LogicAlgebra.Core
             List<string> itemsInBrases = new List<string>();
 
             var argumentsToIterate = (formatting == null || !formatting.InverseBlockOrder) ?
-                Arguments : Arguments.Reverse();
+                Items : Items.Reverse();
             
             foreach (IBooleanFunction item in argumentsToIterate)
             {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LogicAlgebra.Core
 {
-    class BooleanFunctionEqualityComparer : IEqualityComparer<IBooleanFunction>
+    public class BooleanFunctionEqualityComparer : IEqualityComparer<IBooleanFunction>
     {
         public static readonly BooleanFunctionEqualityComparer Instance =
             new BooleanFunctionEqualityComparer();

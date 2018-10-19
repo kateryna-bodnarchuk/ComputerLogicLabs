@@ -21,7 +21,8 @@ namespace Lab3Console
                 PositiveMcCluskeyMethod.GetImplicantDisjunctionNormalForm(output);
 
             PrintWithTitle(
-                "Optimized optimized Function", LogicConvert.ToOrFunction(minimalDisjunctionalNormalForm));
+                "Optimized Function", LogicConvert.ToOrFunction(minimalDisjunctionalNormalForm));
+            Console.WriteLine();
 
             bool[] outputInversed = output.Select(i => !i).ToArray();
             PrintWithTitle(
@@ -31,13 +32,15 @@ namespace Lab3Console
             IBooleanFunction minimalDisjunctionalNormalFormInversed =
                 LogicConvert.ToOrFunction(PositiveMcCluskeyMethod.GetImplicantDisjunctionNormalForm(outputInversed));
             PrintWithTitle(
-                "Optimized optimized Inversed Function",
+                "Optimized Inversed Function",
                 minimalDisjunctionalNormalFormInversed);
+            Console.WriteLine();
 
             IBooleanFunction minimalDisjunctionalNormalFormDobleInversed = new NotFunction(minimalDisjunctionalNormalFormInversed);
             PrintWithTitle(
-                "Optimized optimized Inversed Function Inversed",
+                "Optimized Inversed Function Inversed",
                 minimalDisjunctionalNormalFormDobleInversed);
+            Console.WriteLine();
 
             IBooleanFunction andOfNotAndForm = RecursiveTransform.ExecuteRecursive(
                 minimalDisjunctionalNormalFormDobleInversed, DeMorgansLaw.TryConvertNotOfOrToAndOfNot);

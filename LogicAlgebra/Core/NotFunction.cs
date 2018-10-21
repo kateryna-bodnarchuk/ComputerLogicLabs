@@ -13,6 +13,9 @@ namespace LogicAlgebra.Core
             this.Argument = argument;
         }
 
+        public static NotFunction DobleNot(IBooleanFunction argument)
+            => new NotFunction(new NotFunction(argument));
+
         public IBooleanFunction Argument { get; }
 
         public static IBooleanFunction NotOptimized(IBooleanFunction function)
@@ -27,7 +30,13 @@ namespace LogicAlgebra.Core
             return !argumentValue;
         }
 
-        public string GetFormulaString(IFunctionFormatting formatting) => 
-            "!(" + Argument.GetFormulaString(formatting) + ")";
+        public string GetFormulaString(IFunctionFormatting formatting)
+        {
+            string argumentFormatted = Argument.GetFormulaString(formatting);
+            string argumentEmbrased = InputFunction.TestInputInversable(Argument) ?
+                argumentFormatted : 
+                $"({argumentFormatted})";
+            return "!" + argumentEmbrased;
+        }
     }
 }

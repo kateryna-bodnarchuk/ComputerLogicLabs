@@ -37,19 +37,9 @@ namespace LogicAlgebra.Core
             return true;
         }
 
-        public string GetFormulaString(IFunctionFormatting formatting)
+        public string GetFormulaString(IFunctionFormatting formatting = null)
         {
-            List<string> itemsInBrases = new List<string>();
-
-            var argumentsToIterate = (formatting == null || !formatting.InverseBlockOrder) ?
-                Items : Items.Reverse();
-            
-            foreach (IBooleanFunction item in argumentsToIterate)
-            {
-                itemsInBrases.Add(item.GetFormulaString(formatting));
-            }
-
-            return string.Join("^", itemsInBrases);
+            return string.Join(" ^ ", CollectionFormatting.GetCollectionItemsPrepared(Items, formatting));
         }
     }
 }

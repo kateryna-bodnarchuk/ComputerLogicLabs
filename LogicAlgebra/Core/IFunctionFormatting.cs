@@ -6,7 +6,7 @@ namespace LogicAlgebra.Core
 {
     public interface IFunctionFormatting
     {
-        bool InverseBlockOrder { get; }
+        IEnumerable<IBooleanFunction> OrderItems(IEnumerable<IBooleanFunction> items);
         string InputToString(int index);
     }
 }

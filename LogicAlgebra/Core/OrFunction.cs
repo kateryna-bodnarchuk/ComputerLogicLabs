@@ -35,17 +35,7 @@ namespace LogicAlgebra.Core
 
         public string GetFormulaString(IFunctionFormatting formatting = null)
         {
-            List<string> itemsInBrases = new List<string>();
-
-            var argumentsToIterate = (formatting == null || !formatting.InverseBlockOrder) ?
-                Items : Items.Reverse();
-
-            foreach (IBooleanFunction item in Items)
-            {
-                itemsInBrases.Add("(" + item.GetFormulaString(formatting) + ")");
-            }
-
-            return string.Join("v", itemsInBrases);
+            return string.Join(" v ", CollectionFormatting.GetCollectionItemsPrepared(Items, formatting));
         }
     }
 }

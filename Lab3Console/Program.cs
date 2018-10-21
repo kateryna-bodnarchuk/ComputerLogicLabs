@@ -14,14 +14,12 @@ namespace Lab3Console
         {
             bool[] output = BitTools.GetOutputBool(KaterynaBodnarchukTask.KateBodnarchukCase);
 
-            PrintWithTitle(
-                "Original Function", LogicConvert.ToOrFunction(PositiveMcCluskeyMethod.GetConstituents(output)));
+            PrintWithTitle("Original Function", LogicConvert.ToOrFunction(PositiveMcCluskeyMethod.GetConstituents(output)));
 
             IList<Implicant> minimalDisjunctionalNormalForm = 
                 PositiveMcCluskeyMethod.GetImplicantDisjunctionNormalForm(output);
 
-            PrintWithTitle(
-                "Optimized Function", LogicConvert.ToOrFunction(minimalDisjunctionalNormalForm));
+            PrintWithTitle("Optimized Function", LogicConvert.ToOrFunction(minimalDisjunctionalNormalForm));
             Console.WriteLine();
 
             bool[] outputInversed = output.Select(i => !i).ToArray();
@@ -31,40 +29,34 @@ namespace Lab3Console
 
             IBooleanFunction minimalDisjunctionalNormalFormInversed =
                 LogicConvert.ToOrFunction(PositiveMcCluskeyMethod.GetImplicantDisjunctionNormalForm(outputInversed));
-            PrintWithTitle(
-                "Optimized Inversed Function",
-                minimalDisjunctionalNormalFormInversed);
+            PrintWithTitle("Optimized Inversed Function", minimalDisjunctionalNormalFormInversed);
             Console.WriteLine();
 
             IBooleanFunction minimalDisjunctionalNormalFormDobleInversed = new NotFunction(minimalDisjunctionalNormalFormInversed);
-            PrintWithTitle(
-                "Optimized Inversed Function Inversed",
-                minimalDisjunctionalNormalFormDobleInversed);
+            PrintWithTitle("Optimized Inversed Function Inversed", minimalDisjunctionalNormalFormDobleInversed);
             Console.WriteLine();
 
             IBooleanFunction andOfNotAndForm = RecursiveTransform.ExecuteRecursive(
                 minimalDisjunctionalNormalFormDobleInversed, DeMorgansLaw.TryConvertNotOfOrToAndOfNot);
-            PrintWithTitle(
-                "Not of not and",
-                andOfNotAndForm);
+            PrintWithTitle("Not of not and", andOfNotAndForm);
+
+            IBooleanFunction andOfOrForm = RecursiveTransform.ExecuteRecursive(
+                andOfNotAndForm, DeMorgansLaw.TryConvertNotOfAndToOrOfNot);
+            PrintWithTitle("And of or", andOfOrForm);
+
+            IBooleanFunction doubleNotOfAndOfOrForm = NotFunction.DobleNot(andOfOrForm);
+            IBooleanFunction notOfOrNotOfOrForm = RecursiveTransform.ExecuteRecursive(
+                doubleNotOfAndOfOrForm, DeMorgansLaw.TryConvertNotOfAndToOrOfNot);
+            PrintWithTitle("NotOfOr/NotOfOr", notOfOrNotOfOrForm);
 
             uint input = uint.Parse(Console.ReadLine());
-            Console.WriteLine("Output: " + ImplicantDisjunctionNormalForm.Evaluate(minimalDisjunctionalNormalForm, input));
+            Console.WriteLine("Output: " + notOfOrNotOfOrForm.Evaluate(new UInt32EvaluationContext(input)));
             Console.ReadKey();
         }
 
         static void PrintWithTitle(string title, IBooleanFunction function)
         {
             Console.WriteLine(title + ": " + function.GetFormulaString(UniversityTeacherFormatting.Instance));
-        }
-
-        class UniversityTeacherFormatting : IFunctionFormatting
-        {
-            public static UniversityTeacherFormatting Instance = new UniversityTeacherFormatting();
-
-            public bool InverseBlockOrder => true;
-
-            public string InputToString(int index) => "x" + (4 - index).ToString();
         }
     }
 }
